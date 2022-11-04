@@ -1,0 +1,21 @@
+# amount_type：申请/担保/贷款   对应计算金额的取值字段
+# amount_data:列表接口返回的总金额字段
+
+# 保费管理列表
+# 用例1：无查询条件
+-
+  interfaceName : 保费管理按主体无查询条件
+  url_list : /hkm-service/hkm/premium/queryPremiumBankDetail
+  url_export : /hkm-service/hkm/export/exportPremiumBankDetail
+  payload :
+    contractNo: ""
+    fileDate: ""
+    instName: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    paymentWay: ""
+    registerName: chiq
+    exportType: 1

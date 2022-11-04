@@ -1,0 +1,955 @@
+## amount_type：贷款/解保   对应计算金额的取值字段
+## amount_data:列表接口返回的总金额字段
+#
+## 担保发生
+## 用例1：无查询条件
+#-
+#  interfaceName : 担保发生无查询条件
+#  amount_type : 贷款
+#  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+#  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+#  payload :
+#    contractNo: ""
+#    loanApplicantIdCard: ""
+#    loanApplicantName: ""
+#    loanRctNo: ""
+#    loanRctStatusCode: ""
+#    loanSubmmitter: ""
+#    online: ""
+#    orderCityCode: ""
+#    orderCounty: ""
+#    orderCountyCode: ""
+#    orderTownCode: ""
+#    pageNum: 1
+#    pageSize: 100000
+#    paymentStatus: ""
+#    sortProp: loanCreateTime
+#    sortType: desc
+#    sourceType: ""
+#
+## 担保发生
+## 用例2：贷款主体为刘永华
+#-
+#  interfaceName : 担保发生查询条件为贷款主体为刘永华
+#  amount_type : 贷款
+#  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+#  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+#  payload :
+#    contractNo: ""
+#    loanApplicantIdCard: ""
+#    loanApplicantName: 刘永华
+#    loanRctNo: ""
+#    loanRctStatusCode: ""
+#    loanSubmmitter: ""
+#    online: ""
+#    orderCityCode: ""
+#    orderCounty: ""
+#    orderCountyCode: ""
+#    orderTownCode: ""
+#    pageNum: 1
+#    pageSize: 100000
+#    paymentStatus: ""
+#    sortProp: loanCreateTime
+#    sortType: desc
+#    sourceType: ""
+#
+## 担保发生
+## 用例3：贷款主体为安徽
+#-
+#  interfaceName : 担保发生查询条件为贷款主体为安徽
+#  amount_type : 贷款
+#  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+#  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+#  payload :
+#    contractNo: ""
+#    loanApplicantIdCard: ""
+#    loanApplicantName: 安徽
+#    loanRctNo: ""
+#    loanRctStatusCode: ""
+#    loanSubmmitter: ""
+#    online: ""
+#    orderCityCode: ""
+#    orderCounty: ""
+#    orderCountyCode: ""
+#    orderTownCode: ""
+#    pageNum: 1
+#    pageSize: 100000
+#    paymentStatus: ""
+#    sortProp: loanCreateTime
+#    sortType: desc
+#    sourceType: ""
+#
+## 担保发生
+## 用例4：贷款主体为安徽省齐岗农业发展有限公司
+#-
+#  interfaceName : 担保发生查询条件为贷款主体为安徽省齐岗农业发展有限公司
+#  amount_type : 贷款
+#  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+#  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+#  payload :
+#    contractNo: ""
+#    loanApplicantIdCard: ""
+#    loanApplicantName: 安徽省齐岗农业发展有限公司
+#    loanRctNo: ""
+#    loanRctStatusCode: ""
+#    loanSubmmitter: ""
+#    online: ""
+#    orderCityCode: ""
+#    orderCounty: ""
+#    orderCountyCode: ""
+#    orderTownCode: ""
+#    pageNum: 1
+#    pageSize: 100000
+#    paymentStatus: ""
+#    sortProp: loanCreateTime
+#    sortType: desc
+#    sourceType: ""
+#
+## 担保发生
+## 用例5：证件号为913408810955266108
+#-
+#  interfaceName : 担保发生查询条件为证件号为913408810955266108
+#  amount_type : 贷款
+#  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+#  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+#  payload :
+#    contractNo: ""
+#    loanApplicantIdCard: 913408810955266108
+#    loanApplicantName: ""
+#    loanRctNo: ""
+#    loanRctStatusCode: ""
+#    loanSubmmitter: ""
+#    online: ""
+#    orderCityCode: ""
+#    orderCounty: ""
+#    orderCountyCode: ""
+#    orderTownCode: ""
+#    pageNum: 1
+#    pageSize: 100000
+#    paymentStatus: ""
+#    sortProp: loanCreateTime
+#    sortType: desc
+#    sourceType: ""
+#
+## 担保发生
+## 用例6：证件号为340121196412203713
+#-
+#  interfaceName : 担保发生查询条件为证件号为340121196412203713
+#  amount_type : 贷款
+#  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+#  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+#  payload :
+#    contractNo: ""
+#    loanApplicantIdCard: 340121196412203713
+#    loanApplicantName: ""
+#    loanRctNo: ""
+#    loanRctStatusCode: ""
+#    loanSubmmitter: ""
+#    online: ""
+#    orderCityCode: ""
+#    orderCounty: ""
+#    orderCountyCode: ""
+#    orderTownCode: ""
+#    pageNum: 1
+#    pageSize: 100000
+#    paymentStatus: ""
+#    sortProp: loanCreateTime
+#    sortType: desc
+#    sourceType: ""
+#
+## 担保发生
+## 用例7：证件号为19
+#-
+#  interfaceName : 担保发生查询条件为证件号为19
+#  amount_type : 贷款
+#  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+#  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+#  payload :
+#    contractNo: ""
+#    loanApplicantIdCard: 19
+#    loanApplicantName: ""
+#    loanRctNo: ""
+#    loanRctStatusCode: ""
+#    loanSubmmitter: ""
+#    online: ""
+#    orderCityCode: ""
+#    orderCounty: ""
+#    orderCountyCode: ""
+#    orderTownCode: ""
+#    pageNum: 1
+#    pageSize: 100000
+#    paymentStatus: ""
+#    sortProp: loanCreateTime
+#    sortType: desc
+#    sourceType: ""
+#
+## 担保发生
+## 用例8：市为阜阳市
+#-
+#  interfaceName : 担保发生查询条件为市为阜阳市
+#  amount_type : 贷款
+#  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+#  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+#  payload :
+#    contractNo: ""
+#    loanApplicantIdCard: ""
+#    loanApplicantName: ""
+#    loanRctNo: ""
+#    loanRctStatusCode: ""
+#    loanSubmmitter: ""
+#    online: ""
+#    orderCityCode: 341200000000
+#    orderCounty: ""
+#    orderCountyCode: ""
+#    orderTownCode: ""
+#    pageNum: 1
+#    pageSize: 100000
+#    paymentStatus: ""
+#    sortProp: loanCreateTime
+#    sortType: desc
+#    sourceType: ""
+#
+## 担保发生
+## 用例9：市为阜阳市-阜南县
+#-
+#  interfaceName : 担保发生查询条件为市为阜阳市-阜南县
+#  amount_type : 贷款
+#  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+#  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+#  payload :
+#    contractNo: ""
+#    loanApplicantIdCard: ""
+#    loanApplicantName: ""
+#    loanRctNo: ""
+#    loanRctStatusCode: ""
+#    loanSubmmitter: ""
+#    online: ""
+#    orderCityCode: 341200000000
+#    orderCounty: ""
+#    orderCountyCode: 341225000000
+#    orderTownCode: ""
+#    pageNum: 1
+#    pageSize: 100000
+#    paymentStatus: ""
+#    sortProp: loanCreateTime
+#    sortType: desc
+#    sourceType: ""
+
+# 担保发生
+# 用例10：市为阜阳市-阜南县-龙王乡
+-
+  interfaceName : 担保发生查询条件为市为阜阳市-阜南县-龙王乡
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: 341200000000
+    orderCounty: ""
+    orderCountyCode: 341225000000
+    orderTownCode: 341225206000
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例11：处理人为陈志豪
+-
+  interfaceName : 担保发生查询条件为处理人为陈志豪
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: 陈志豪
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例12：处理人为吴
+-
+  interfaceName : 担保发生查询条件为处理人为吴
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: 吴
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例13：借款合同编号为34020120220036970
+-
+  interfaceName : 担保发生查询条件为借款合同编号为34020120220036970
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: 34020120220036970
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例14：借据编号为ba7b4e6f-92cf-4cef-878d-0728b8f3d997
+-
+  interfaceName : 担保发生查询条件为借款合同编号为34020120220036970
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ba7b4e6f-92cf-4cef-878d-0728b8f3d997
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例15：放款银行为中国邮政储蓄银行
+-
+  interfaceName : 担保发生查询条件为放款银行为中国邮政储蓄银行
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+    instName: 中国邮政储蓄银行股份有限公司
+
+# 担保发生
+# 用例16：贷款开始日期为2022-8-23到2022-8-23
+-
+  interfaceName : 担保发生查询条件为贷款开始日期为2022-8-23到2022-8-23
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+    rctBgnDateEnd: "2022-08-23"
+    rctBgnDateStart: "2022-08-23"
+
+# 担保发生
+# 用例17：贷款开始日期为2022-8-23到2023-8-23
+-
+  interfaceName : 担保发生查询条件为贷款开始日期为2022-8-23到2023-8-23
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+    rctBgnDateEnd: "2022-08-23"
+    rctBgnDateStart: "2023-08-23"
+
+# 担保发生
+# 用例18：贷款结束日期为2022-8-23到2022-8-23
+-
+  interfaceName : 担保发生查询条件为贷款结束日期为2022-8-23到2022-8-23
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+    rctBgnDateEnd: ""
+    rctBgnDateStart: ""
+    rctEndDateEnd: "2022-08-23"
+    rctEndDateStart: "2022-08-23"
+
+# 担保发生
+# 用例19：贷款结束日期为2022-8-23到2023-8-23
+-
+  interfaceName : 担保发生查询条件为贷款结束日期为2022-8-23到2023-8-23
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+    rctBgnDateEnd: ""
+    rctBgnDateStart: ""
+    rctEndDateEnd: "2022-08-23"
+    rctEndDateStart: "2023-08-23"
+
+# 担保发生
+# 用例20：保费缴纳为已缴纳
+-
+  interfaceName : 担保发生查询条件为保费缴纳为已缴纳
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: 已缴纳
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例21：保费缴纳为未缴纳
+-
+  interfaceName : 担保发生查询条件为保费缴纳为未缴纳
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: 未缴纳
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例22：项目类型为码上办
+-
+  interfaceName : 担保发生查询条件为项目类型为码上办
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: 1
+
+# 担保发生
+# 用例23：项目类型为政策外项目
+-
+  interfaceName : 担保发生查询条件为项目类型为政策外项目
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: 4
+
+# 担保发生
+# 用例24：项目类型为银担总对总
+-
+  interfaceName : 担保发生查询条件为项目类型为银担总对总
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: 3
+
+# 担保发生
+# 用例25：项目类型为信贷直通车
+-
+  interfaceName : 担保发生查询条件为项目类型为信贷直通车
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: 2
+
+# 担保发生
+# 用例26：项目类型为其他
+-
+  interfaceName : 担保发生查询条件为项目类型为其他
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: 5
+
+# 担保发生
+# 用例27：数据获取为老系统迁移
+-
+  interfaceName : 担保发生查询条件为数据获取为老系统迁移
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: 2
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例28：数据获取为线上处理
+-
+  interfaceName : 担保发生查询条件为数据获取为线上处理
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: 1
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例29：数据获取为线下导入
+-
+  interfaceName : 担保发生查询条件为数据获取为线下导入
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: 0
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例30：数据获取为线下录入
+-
+  interfaceName : 担保发生查询条件为数据获取为线下录入
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: 5
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例31：借据状态为在保
+-
+  interfaceName : 担保发生查询条件为借据状态为在保
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: 0
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例32：借据状态为正常解保
+-
+  interfaceName : 担保发生查询条件为借据状态为正常解保
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: 1
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例33：借据状态为化解解保
+-
+  interfaceName : 担保发生查询条件为借据状态为化解解保
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: 3
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例34：借据状态为代偿解保
+-
+  interfaceName : 担保发生查询条件为借据状态为代偿解保
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: 2
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+
+# 担保发生
+# 用例35：创建时间为2022-8-23到2022-8-23
+-
+  interfaceName : 担保发生查询条件为借据状态为代偿解保
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+    loanCreateTimeEnd: "2022-08-23"
+    loanCreateTimeStart: "2022-08-23"
+
+# 担保发生
+# 用例36：创建时间为2022-8-23到2023-8-23
+-
+  interfaceName : 担保发生查询条件为借据状态为代偿解保
+  amount_type : 贷款
+  url_list : /hkm-service/hkm/project/underguarantee/occurrence/list
+  url_export : /hkm-service/hkm/project/underguarantee/occurrence/export
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanRctStatusCode: ""
+    loanSubmmitter: ""
+    online: ""
+    orderCityCode: ""
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 100000
+    paymentStatus: ""
+    sortProp: loanCreateTime
+    sortType: desc
+    sourceType: ""
+    loanCreateTimeEnd: "2022-08-23"
+    loanCreateTimeStart: "2023-08-23"

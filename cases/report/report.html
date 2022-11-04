@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function find_all(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sort_column(elem) {
+    toggle_sort_states(elem);
+    var colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    var key;
+    if (elem.classList.contains('numeric')) {
+        key = key_num;
+    } else if (elem.classList.contains('result')) {
+        key = key_result;
+    } else {
+        key = key_alpha;
+    }
+    sort_table(elem, key(colIndex));
+}
+
+function show_all_extras() {
+    find_all('.col-result').forEach(show_extras);
+}
+
+function hide_all_extras() {
+    find_all('.col-result').forEach(hide_extras);
+}
+
+function show_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.remove("collapsed");
+    expandcollapse.classList.remove("expander");
+    expandcollapse.classList.add("collapser");
+}
+
+function hide_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.add("collapsed");
+    expandcollapse.classList.remove("collapser");
+    expandcollapse.classList.add("expander");
+}
+
+function show_filters() {
+    var filter_items = document.getElementsByClassName('filter');
+    for (var i = 0; i < filter_items.length; i++)
+        filter_items[i].hidden = false;
+}
+
+function add_collapse() {
+    // Add links for show/hide all
+    var resulttable = find('table#results-table');
+    var showhideall = document.createElement("p");
+    showhideall.innerHTML = '<a href="javascript:show_all_extras()">Show all details</a> / ' +
+                            '<a href="javascript:hide_all_extras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    find_all('.col-result').forEach(function(elem) {
+        var collapsed = get_query_parameter('collapsed') || 'Passed';
+        var extras = elem.parentNode.nextElementSibling;
+        var expandcollapse = document.createElement("span");
+        if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add("collapsed");
+            expandcollapse.classList.add("expander");
+        } else {
+            expandcollapse.classList.add("collapser");
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener("click", function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains("collapsed")) {
+                show_extras(event.currentTarget);
+            } else {
+                hide_extras(event.currentTarget);
+            }
+        });
+    })
+}
+
+function get_query_parameter(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () {
+    reset_sort_headers();
+
+    add_collapse();
+
+    show_filters();
+
+    sort_column(find('.initial-sort'));
+
+    find_all('.sortable').forEach(function(elem) {
+        elem.addEventListener("click",
+                              function(event) {
+                                  sort_column(elem);
+                              }, false)
+    });
+
+};
+
+function sort_table(clicked, key_func) {
+    var rows = find_all('.results-table-row');
+    var reversed = !clicked.classList.contains('asc');
+    var sorted_rows = sort(rows, key_func, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    var thead = document.getElementById("results-table-head");
+    document.getElementById('results-table').remove();
+    var parent = document.createElement("table");
+    parent.id = "results-table";
+    parent.appendChild(thead);
+    sorted_rows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName("BODY")[0].appendChild(parent);
+}
+
+function sort(items, key_func, reversed) {
+    var sort_array = items.map(function(item, i) {
+        return [key_func(item), i];
+    });
+
+    sort_array.sort(function(a, b) {
+        var key_a = a[0];
+        var key_b = b[0];
+
+        if (key_a == key_b) return 0;
+
+        if (reversed) {
+            return (key_a < key_b ? 1 : -1);
+        } else {
+            return (key_a > key_b ? 1 : -1);
+        }
+    });
+
+    return sort_array.map(function(item) {
+        var index = item[1];
+        return items[index];
+    });
+}
+
+function key_alpha(col_index) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[col_index].firstChild.data.toLowerCase();
+    };
+}
+
+function key_num(col_index) {
+    return function(elem) {
+        return parseFloat(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function key_result(col_index) {
+    return function(elem) {
+        var strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+                       'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function reset_sort_headers() {
+    find_all('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    find_all('.sortable').forEach(function(elem) {
+        var icon = document.createElement("div");
+        icon.className = "sort-icon";
+        icon.textContent = "vvv";
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove("desc", "active");
+        elem.classList.add("asc", "inactive");
+    });
+}
+
+function toggle_sort_states(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        reset_sort_headers();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function is_all_rows_hidden(value) {
+  return value.hidden == false;
+}
+
+function filter_table(elem) {
+    var outcome_att = "data-test-result";
+    var outcome = elem.getAttribute(outcome_att);
+    class_outcome = outcome + " results-table-row";
+    var outcome_rows = document.getElementsByClassName(class_outcome);
+
+    for(var i = 0; i < outcome_rows.length; i++){
+        outcome_rows[i].hidden = !elem.checked;
+    }
+
+    var rows = find_all('.results-table-row').filter(is_all_rows_hidden);
+    var all_rows_hidden = rows.length == 0 ? true : false;
+    var not_found_message = document.getElementById("not-found-message");
+    not_found_message.hidden = !all_rows_hidden;
+}
+</script>
+    <h1>report.html</h1>
+    <p>Report generated on 04-Nov-2022 at 11:08:56 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v1.22.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>JAVA_HOME</td>
+        <td>D:\java</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{&apos;py&apos;: &apos;1.11.0&apos;, &apos;pytest&apos;: &apos;4.6.11&apos;, &apos;pluggy&apos;: &apos;0.13.1&apos;}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.17763</td></tr>
+      <tr>
+        <td>Plugins</td>
+        <td>{u&apos;html&apos;: u&apos;1.22.1&apos;, u&apos;metadata&apos;: u&apos;1.11.0&apos;}</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>2.7.18</td></tr></table>
+    <h2>Summary</h2>
+    <p>56 tests ran in 170.59 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">55 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable numeric" col="duration">Duration</th>
+          <th>Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args55]</td>
+          <td class="col-duration">23.09</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;cases.test_queryimport_verified.TestQueryImport object at 0x10979630&gt;<br/>begin_02 = ('Bearer eyJhbGciOiJIUzUxMiJ9.eyJzZXJ2ZXJQYXRoIjpudWxsLCJjdXJyZW50U3RhZmZJZCI6IjA5ZWRjYjZiLTQxM2QtMTFlYy04NjFiLTFjYjcy...XNlcm5hbWUiOiJjaGlxIn0.e6S38B3fNrhTv_gl_4ft67tfljax5csLT_oswEREJtZSoEnKlhE6MxLo2HgUSBbAxmFN0U1oQaazn3fZubPfug', 'chiq')<br/>set_global_data = &lt;function _set_global_data at 0x0C872AB0&gt;<br/>get_global_data = &lt;function _get_global_data at 0x0C64A3F0&gt;<br/>env_vars = ('http://101.91.192.161:8081/proxy-218_78_117_176-custom', '101.91.192.161:8081')<br/>args = {'amount_data': 'totalGuaranteeBatchAmount', 'amount_type': '担保', 'interfaceName': '已发送项目无查询条件', 'payload': {'bankCode': '', 'classCode': '', 'loanApplicantIdcard': '', 'loanApplicantName': '', ...}, ...}<br/><br/>    def test_passorderlist(self, begin_02, set_global_data,get_global_data, env_vars,args):<br/>        """<br/>        检查待核验列表数据无查询条件时与导出数据一致<br/>        :return:<br/>        """<br/>        url_list = env_vars[0]+args['url_list']<br/>        url_export = env_vars[0]+args['url_export']<br/>    <br/>        args['payload']['registerName'] = begin_02[1]<br/>        payload = args['payload']<br/>    <br/>        headers = {<br/>            'Host': env_vars[1],<br/>            'Content-Length': '1134',<br/>            'Authorization': begin_02[0],<br/>            'Content-Type': 'application/json;charset=UTF-8'<br/>        }<br/>    <br/>        response01 = common.send_http(url=url_list, method="POST", headers=headers, data=payload)<br/>        response02 = common.send_http(url=url_export, method="POST", headers=headers, data=payload)<br/>    <br/>        if response01['status'] == "success":  # 接口请求成功<br/>            # set_global_data("passorderlist", response01)<br/>            total_sum = response01["data"]["total"]<br/>            total_amount = response01["data"][args['amount_data']]<br/>            msg = "【检查点1】"+args['interfaceName']+"获取接口调用成功"<br/>            log.info(msg)<br/>            assert response01['code'] == 1, msg<br/>    <br/>            if response02['status'] == "success":  # 接口请求成功<br/>                msg = ("【检查点2】"+args['interfaceName']+"导出接口调用成功,文件链接为%s" %response02['data'])<br/>                log.info(msg)<br/>                assert response02['data'] != "", msg<br/>            else:<br/>                log.error("【FAIL】"+args['interfaceName']+"导出接口调用失败|%s" % str(response01))<br/>                assert 0<br/>    <br/>            # data_excel = xlwings.Book(response02['data'])<br/>            # data_excel_sheet = data_excel.sheets[0]<br/>            # data_excel_info = data_excel_sheet.used_range<br/>            #<br/>            # data_excel_num = data_excel_info.last_cell.row<br/>            # data_excel_amount_list = data_excel_info.range('申请金额（万元）').expand().value<br/>    <br/>            data_excel = pandas.read_excel(response02['data'])<br/>            data_excel_num = data_excel.shape[0]<br/>            data_excel_amount = 0<br/>            if args['amount_type'] == "申请":<br/>                for data in data_excel['申请金额（万元）']:<br/>                    data_excel_amount += data<br/>            elif args['amount_type'] == "担保":<br/>&gt;               for data in data_excel['担保金额（万元）']:<br/><br/>test_queryimport_verified.py:79: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>C:\Users\zhangt\AppData\Roaming\Python\Python27\site-packages\pandas\core\frame.py:2927: in __getitem__<br/>    indexer = self.columns.get_loc(key)<br/>C:\Users\zhangt\AppData\Roaming\Python\Python27\site-packages\pandas\core\indexes\base.py:2659: in get_loc<br/>    return self._engine.get_loc(self._maybe_cast_indexer(key))<br/>pandas\_libs\index.pyx:108: in pandas._libs.index.IndexEngine.get_loc<br/>    ???<br/>pandas\_libs\index.pyx:132: in pandas._libs.index.IndexEngine.get_loc<br/>    ???<br/>pandas\_libs\hashtable_class_helper.pxi:1601: in pandas._libs.hashtable.PyObjectHashTable.get_item<br/>    ???<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>&gt;   ???<br/><span class="error">E   KeyError: '\xe6\x8b\x85\xe4\xbf\x9d\xe9\x87\x91\xe9\xa2\x9d\xef\xbc\x88\xe4\xb8\x87\xe5\x85\x83\xef\xbc\x89'</span><br/><br/>pandas\_libs\hashtable_class_helper.pxi:1608: KeyError<br/>------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】已发送项目无查询条件获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】已发送项目无查询条件导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgjqEf81eAAAAABZIk1E29.xlsx?attName=已推送项目1667531314357.xlsx<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args0]</td>
+          <td class="col-duration">4.08</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">---------------------------- Captured stdout setup -----------------------------<br/>{u'msg': None, u'message': None, u'data': {u'username': u'chiq', u'major': u'YES', u'realName': u'\u8fdf\u9752', u'authId': u'09edcb6b-413d-11ec-861b-1cb72cde98e2', u'currentOrgId': u'163bd4f6413e11ec806400163e08dcc4', u'currentOrgBelongSource': u'ML-SY-3401-0183-NY03', u'token': u'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzZXJ2ZXJQYXRoIjpudWxsLCJjdXJyZW50U3RhZmZJZCI6IjA5ZWRjYjZiLTQxM2QtMTFlYy04NjFiLTFjYjcyY2RlOThlMiIsIm9yZ05hbWVzIjpudWxsLCJjdXJyZW50T3JnQXJlYUlkIjoiMDEwMDEwMiIsImNvbnRleHRBcHBsaWNhdGlvbklkIjpudWxsLCJjdXJyZW50T3JnQmVsb25nU291cmNlIjoiTUwtU1ktMzQwMS0wMTgzLU5ZMDMiLCJvbGRUb2tlbiI6IjFGQjg0ODQ2OTg0RjQ2N0I5N0UwMDI2RDhGQ0FFNTc5Iiwic2Vzc2lvbklkIjpudWxsLCJ1c2VySWQiOm51bGwsImNvcnBDb2RlIjpudWxsLCJjdXJyZW50T3JnSWQiOiIxNjNiZDRmNjQxM2UxMWVjODA2NDAwMTYzZTA4ZGNjNCIsImF1dGhJZCI6IjA5ZWRjYjZiLTQxM2QtMTFlYy04NjFiLTFjYjcyY2RlOThlMiIsInBob25lTm8iOiIxMzYzNzA1MjE4NiIsInJlYWxOYW1lIjoi6L-f6Z2SIiwib3JnSWRzIjpudWxsLCJzdGFmZklkcyI6bnVsbCwibWFqb3IiOiJZRVMiLCJ0aGlyZEFwcElkIjpudWxsLCJleHAiOjE2Njc1MzgzNjUsInN1cGVyQWRtaW4iOm51bGwsImN1cnJlbnRPcmdOYW1lIjoi5a6J5b6955yB5Yac5Lia5L-h6LS36J6N6LWE5ouF5L-d5pyJ6ZmQ5YWs5Y-4IiwidXNlcm5hbWUiOiJjaGlxIn0.e6S38B3fNrhTv_gl_4ft67tfljax5csLT_oswEREJtZSoEnKlhE6MxLo2HgUSBbAxmFN0U1oQaazn3fZubPfug', u'currentStaffId': u'09edcb6b-413d-11ec-861b-1cb72cde98e2', u'phoneNo': u'13637052186', u'currentOrgName': u'\u5b89\u5fbd\u7701\u519c\u4e1a\u4fe1\u8d37\u878d\u8d44\u62c5\u4fdd\u6709\u9650\u516c\u53f8', u'oldToken': u'1FB84846984F467B97E0026D8FCAE579', u'currentOrgAreaId': u'0100102'}, u'errCode': None, u'success': True}
+<br/>------------------------------ Captured log setup ------------------------------<br/>INFO     test_begin:conftest.py:90 =========开始测试=========<br/>------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待核验主体无查询条件获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待核验主体无查询条件导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgZ-ESijbAAAAAHovi7A24.xlsx?attName=待核验主体1667531166454.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1903条，总金额144643.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args1]</td>
+          <td class="col-duration">1.98</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待核验主体查询条件为阜阳市获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待核验主体查询条件为阜阳市导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgaKEExEtAAAAAOn0I1s79.xlsx?attName=待核验主体1667531170501.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1903条，总金额144643.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args2]</td>
+          <td class="col-duration">1.07</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待核验主体查询条件为阜阳市-阜南县获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待核验主体查询条件为阜阳市-阜南县导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgaSEDUgzAAAAAHIJ2Zg96.xlsx?attName=待核验主体1667531172412.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共116条，总金额10955.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args3]</td>
+          <td class="col-duration">1.12</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待核验主体查询条件为阜阳市-阜南县-方集镇获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待核验主体查询条件为阜阳市-阜南县-方集镇导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgaWEfk6ZAAAAAMOkEEY40.xlsx?attName=待核验主体1667531173472.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共116条，总金额10955.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args4]</td>
+          <td class="col-duration">0.51</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待核验主体查询条件为申请日期为2022-4-7到2022-4-7获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待核验主体查询条件为申请日期为2022-4-7到2022-4-7导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgaaEMB6pAAAAAGAyfhc29.xlsx?attName=待核验主体1667531174090.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共15条，总金额1150.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args5]</td>
+          <td class="col-duration">0.60</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待核验主体查询条件为申请日期为2022-4-7到2022-4-21获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待核验主体查询条件为申请日期为2022-4-7到2022-4-21导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgaaEA0lkAAAAAHeQYX463.xlsx?attName=待核验主体1667531174591.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共238条，总金额20443.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args6]</td>
+          <td class="col-duration">1.15</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待核验主体查询条件为意向银行为中国建设银行获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待核验主体查询条件为意向银行为中国建设银行导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgaeEUquyAAAAAGN_eTw47.xlsx?attName=待核验主体1667531175764.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共220条，总金额11602.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args7]</td>
+          <td class="col-duration">0.79</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待核验主体查询条件为预计用款时间为2022-5到2022-7获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待核验主体查询条件为预计用款时间为2022-5到2022-7导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgaiEMs6wAAAAANlMXDw54.xlsx?attName=待核验主体1667531176680.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共0条，总金额0.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args8]</td>
+          <td class="col-duration">2.72</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体无查询条件获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体无查询条件导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgaqEWHQ2AAAAAG9gtMA78.xlsx?attName=未通过主体1667531177994.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共2649条，总金额204422.833505万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args9]</td>
+          <td class="col-duration">2.47</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为阜阳市获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为阜阳市导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkga2ERrwuAAAAAGXjKUo10.xlsx?attName=未通过主体1667531180677.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共2649条，总金额204422.833505万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args10]</td>
+          <td class="col-duration">1.14</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为阜阳市-阜南县获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为阜阳市-阜南县导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkga-EWxkQAAAAAMaoGA899.xlsx?attName=未通过主体1667531183007.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共110条，总金额11155.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args11]</td>
+          <td class="col-duration">1.14</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为阜阳市-阜南县-方集镇获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为阜阳市-阜南县-方集镇导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgbCEZnTsAAAAAKup2JE13.xlsx?attName=未通过主体1667531184152.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共110条，总金额11155.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args12]</td>
+          <td class="col-duration">0.45</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为申请日期为2022-4-7到2022-4-7获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为申请日期为2022-4-7到2022-4-7导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/63/CgUEPGNkgbCEcg-jAAAAAG2g4I850.xlsx?attName=未通过主体1667531184669.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共4条，总金额400.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args13]</td>
+          <td class="col-duration">0.59</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为申请日期为2022-4-7到2022-4-21获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为申请日期为2022-4-7到2022-4-21导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgbGEELnZAAAAALrwHkg15.xlsx?attName=未通过主体1667531185184.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共136条，总金额11051.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args14]</td>
+          <td class="col-duration">1.28</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为意向银行为中国建设银行获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为意向银行为中国建设银行导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgbKEeuqNAAAAABSe4g484.xlsx?attName=未通过主体1667531186398.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共263条，总金额18891.6万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args15]</td>
+          <td class="col-duration">1.29</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为预计用款时间为2022-5到2022-7获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为预计用款时间为2022-5到2022-7导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgbOEPyazAAAAAF66qSE52.xlsx?attName=未通过主体1667531187653.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共465条，总金额34331.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args16]</td>
+          <td class="col-duration">2.43</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为项目类型为码上办获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为项目类型为码上办导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgbWEeA4hAAAAAEHPdv899.xlsx?attName=未通过主体1667531189132.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共2511条，总金额198257.6万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args17]</td>
+          <td class="col-duration">2.50</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为未通过类型为业务员不通过获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为未通过类型为业务员不通过导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgbiEM7qiAAAAAN2XfLo28.xlsx?attName=未通过主体1667531191607.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共2371条，总金额191378.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args18]</td>
+          <td class="col-duration">0.62</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为姓名为李永根获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为姓名为李永根导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgbmEUTOsAAAAAKMzqjk85.xlsx?attName=未通过主体1667531193443.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1条，总金额50.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args19]</td>
+          <td class="col-duration">0.64</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为身份证号为341127196503262830获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为身份证号为341127196503262830导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgbqEV3v0AAAAAEPfqsQ25.xlsx?attName=未通过主体1667531194098.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1条，总金额30.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args20]</td>
+          <td class="col-duration">0.82</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为项目类型为信贷直通车获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为项目类型为信贷直通车导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgbqEFHZtAAAAAE6cjnM43.xlsx?attName=未通过主体1667531194923.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共0条，总金额0.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args21]</td>
+          <td class="col-duration">1.14</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为项目类型为银担e贷获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为项目类型为银担e贷导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgbyET5MRAAAAACCnzW873.xlsx?attName=未通过主体1667531196011.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共138条，总金额6165.233505万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args22]</td>
+          <td class="col-duration">1.16</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为未通过类型为申请人年龄获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为未通过类型为申请人年龄导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgb2EaouKAAAAABz10CE79.xlsx?attName=未通过主体1667531197207.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共129条，总金额6215.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args23]</td>
+          <td class="col-duration">1.12</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为未通过类型为黑名单客户获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为未通过类型为黑名单客户导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgb6ECqXqAAAAAHSuWmk89.xlsx?attName=未通过主体1667531198415.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共2条，总金额70.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args24]</td>
+          <td class="col-duration">1.12</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为未通过类型为贷款信息重复获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为未通过类型为贷款信息重复导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgb-EVBmFAAAAAN2TKro07.xlsx?attName=未通过主体1667531199455.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共127条，总金额5443.233503万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args25]</td>
+          <td class="col-duration">1.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为未通过类型为贷款用途获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为未通过类型为贷款用途导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgcCEQmvrAAAAAAhdL2808.xlsx?attName=未通过主体1667531200676.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共9条，总金额594.6万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args26]</td>
+          <td class="col-duration">1.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】未通过主体查询条件为未通过类型为不符合业务规定获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】未通过主体查询条件为未通过类型为不符合业务规定导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgcGEHnZ3AAAAAFIouJw95.xlsx?attName=未通过主体1667531201798.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共9条，总金额682.000002万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args27]</td>
+          <td class="col-duration">18.98</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体无查询条件获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体无查询条件导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgcuEZ0Z7AAAAAL-DqzI23.xlsx?attName=有效需求主体1667531205653.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共34831条，总金额2607871.35847万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args28]</td>
+          <td class="col-duration">18.86</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为阜阳市获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为阜阳市导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgd6EDjh9AAAAAB6HItE82.xlsx?attName=有效需求主体1667531224050.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共34831条，总金额2607871.35847万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args29]</td>
+          <td class="col-duration">1.82</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为阜阳市-阜南县获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为阜阳市-阜南县导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgeiEOZ3nAAAAAGI8XKY45.xlsx?attName=有效需求主体1667531240795.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1607条，总金额139232.666601万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args30]</td>
+          <td class="col-duration">1.72</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为阜阳市-阜南县-方集镇获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为阜阳市-阜南县-方集镇导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgeqEFJrEAAAAACNY7Uw68.xlsx?attName=有效需求主体1667531242619.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1607条，总金额139232.666601万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args31]</td>
+          <td class="col-duration">0.47</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为申请日期为2022-4-7到2022-4-7获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为申请日期为2022-4-7到2022-4-7导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgeuEMOsYAAAAACfhE6o33.xlsx?attName=有效需求主体1667531243697.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共104条，总金额9220.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args32]</td>
+          <td class="col-duration">1.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为申请日期为2022-4-7到2022-4-21获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为申请日期为2022-4-7到2022-4-21导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgeyEfDX6AAAAAJxPB1I12.xlsx?attName=有效需求主体1667531244291.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1520条，总金额146609.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args33]</td>
+          <td class="col-duration">1.75</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为意向银行为中国建设银行获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为意向银行为中国建设银行导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkge6EI9Z-AAAAANSHdv860.xlsx?attName=有效需求主体1667531246013.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1418条，总金额105101.2万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args34]</td>
+          <td class="col-duration">3.88</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为预计用款时间为2022-5到2022-7获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为预计用款时间为2022-5到2022-7导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgfCEInKVAAAAAFACjeY56.xlsx?attName=有效需求主体1667531248111.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共6105条，总金额537534.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args35]</td>
+          <td class="col-duration">18.52</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为项目类型为码上办获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为项目类型为码上办导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgfyEScMkAAAAAAoTMpA07.xlsx?attName=有效需求主体1667531253717.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共33578条，总金额2551685.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args36]</td>
+          <td class="col-duration">9.29</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为处理方式为人工通过获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为处理方式为人工通过导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkggqEKSgNAAAAAK-s20k67.xlsx?attName=有效需求主体1667531270954.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共13306条，总金额1134925.4万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args37]</td>
+          <td class="col-duration">1.76</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为姓名为张霞获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为姓名为张霞导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkghCEH5ifAAAAAP2u2_g56.xlsx?attName=有效需求主体1667531280099.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共5条，总金额420.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args38]</td>
+          <td class="col-duration">0.77</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为身份证号为341226197802182754获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为身份证号为341226197802182754导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkghCEfuZpAAAAADvJJRo40.xlsx?attName=有效需求主体1667531280907.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1条，总金额150.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args39]</td>
+          <td class="col-duration">1.04</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为项目类型为信贷直通车获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为项目类型为信贷直通车导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkghGEI232AAAAADFOfb869.xlsx?attName=有效需求主体1667531281944.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共54条，总金额6118.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args40]</td>
+          <td class="col-duration">1.43</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为项目类型为银担e贷获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为项目类型为银担e贷导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkghOEevfxAAAAAEd7G5M15.xlsx?attName=有效需求主体1667531283042.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1150条，总金额33304.358472万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args41]</td>
+          <td class="col-duration">1.07</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为项目类型为政策外项目获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为项目类型为政策外项目导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkghSETloqAAAAANnOlDk36.xlsx?attName=有效需求主体1667531284448.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共49条，总金额16764.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args42]</td>
+          <td class="col-duration">12.44</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】有效需求主体查询条件为处理方式为自动通过获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】有效需求主体查询条件为处理方式为自动通过导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkghuEPzdbAAAAADUzS1E95.xlsx?attName=有效需求主体1667531286886.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共21525条，总金额1472945.95847万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args43]</td>
+          <td class="col-duration">3.15</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目无查询条件获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目无查询条件导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgiOELKrxAAAAAEG8RPo63.xlsx?attName=待处理项目1667531297730.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共2646条，总金额198583.8万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args44]</td>
+          <td class="col-duration">1.84</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为阜阳市获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为阜阳市导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgiWEAfBMAAAAAOqpN6A59.xlsx?attName=待处理项目1667531300905.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共2646条，总金额198583.8万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args45]</td>
+          <td class="col-duration">0.56</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为阜阳市-阜南县获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为阜阳市-阜南县导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgiaEOMK_AAAAAL8USik46.xlsx?attName=待处理项目1667531302427.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共102条，总金额8375.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args46]</td>
+          <td class="col-duration">0.54</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为阜阳市-阜南县-方集镇获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为阜阳市-阜南县-方集镇导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgieEW-fuAAAAAJmzDdg29.xlsx?attName=待处理项目1667531303016.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共102条，总金额8375.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args47]</td>
+          <td class="col-duration">0.46</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为申请日期为2022-4-7到2022-4-7获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为申请日期为2022-4-7到2022-4-7导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgieEE7OEAAAAAGCmM_Y82.xlsx?attName=待处理项目1667531303524.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共8条，总金额900.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args48]</td>
+          <td class="col-duration">0.60</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为申请日期为2022-4-7到2022-4-21获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为申请日期为2022-4-7到2022-4-21导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgiiEVnhTAAAAAEomot032.xlsx?attName=待处理项目1667531304021.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共213条，总金额22183.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args49]</td>
+          <td class="col-duration">0.56</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为意向银行为中国建设银行获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为意向银行为中国建设银行导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgiiEezwqAAAAACMqIpk88.xlsx?attName=待处理项目1667531304619.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共132条，总金额10318.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args50]</td>
+          <td class="col-duration">1.21</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为预计用款时间为2022-5到2022-7获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为预计用款时间为2022-5到2022-7导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgimESdCqAAAAAIIZ5Bw51.xlsx?attName=待处理项目1667531305368.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共1599条，总金额123964.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args51]</td>
+          <td class="col-duration">1.78</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为项目类型为码上办获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为项目类型为码上办导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgiuEPLYRAAAAAKN8KXE60.xlsx?attName=待处理项目1667531306713.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共2608条，总金额190087.8万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args52]</td>
+          <td class="col-duration">0.45</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为项目类型为信贷直通车获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为项目类型为信贷直通车导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgiyEd7WHAAAAAE-m1J859.xlsx?attName=待处理项目1667531308181.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共16条，总金额976.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args53]</td>
+          <td class="col-duration">0.48</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为项目类型为银担e贷获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为项目类型为银担e贷导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgiyENaRhAAAAAA39P5o26.xlsx?attName=待处理项目1667531308620.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共0条，总金额0.0万元<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">cases/test_queryimport_verified.py::TestQueryImport::test_passorderlist[args54]</td>
+          <td class="col-duration">0.48</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">------------------------------ Captured log call -------------------------------<br/>INFO     test_queryimport_verified:test_queryimport_verified.py:54 【检查点1】待处理项目查询条件为项目类型为政策外项目获取接口调用成功
+INFO     test_queryimport_verified:test_queryimport_verified.py:59 【检查点2】待处理项目查询条件为项目类型为政策外项目导出接口调用成功,文件链接为http://117.71.53.199:50021/group1/M00/57/64/CgUEPGNkgi2EYtJaAAAAAKkEG4Y37.xlsx?attName=待处理项目1667531309152.xlsx
+INFO     test_queryimport_verified:test_queryimport_verified.py:88 【检查点3】列表与导出数据一致，共22条，总金额7520.0万元<br/></div></td></tr></tbody></table></body></html>

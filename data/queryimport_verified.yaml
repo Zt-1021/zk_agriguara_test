@@ -1,0 +1,2883 @@
+# amount_type：申请/担保/贷款   对应计算金额的取值字段
+# amount_data:列表接口返回的总金额字段
+
+# 待核验主体
+# 用例1：无查询条件
+-
+  interfaceName : 待核验主体无查询条件
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportToCheckOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (1)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+
+# 用例2：查询条件为阜阳市
+-
+  interfaceName : 待核验主体查询条件为阜阳市
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportToCheckOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (1)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+
+# 用例3：查询条件为阜阳市-阜南县
+-
+  interfaceName : 待核验主体查询条件为阜阳市-阜南县
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportToCheckOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (1)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+
+# 用例4：查询条件为阜阳市-阜南县-方集镇
+-
+  interfaceName : 待核验主体查询条件为阜阳市-阜南县-方集镇
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportToCheckOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (1)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ('341225101000')
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+
+# 用例5：查询条件为申请日期为2022-11-1到2022-11-1
+-
+  interfaceName : 待核验主体查询条件为申请日期为2022-11-1到2022-11-1
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportToCheckOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: "2022-11-01"
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: "2022-11-01"
+    orderIsblack: (1)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+
+# 用例6：查询条件为申请日期为2022-11-7到2022-11-21
+-
+  interfaceName : 待核验主体查询条件为申请日期为2022-11-7到2022-11-21
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportToCheckOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: "2022-11-21"
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: "2022-11-01"
+    orderIsblack: (1)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+
+# 用例7：查询条件为意向银行为中国建设银行
+-
+  interfaceName : 待核验主体查询条件为意向银行为中国建设银行
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportToCheckOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: 105362050023
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (1)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+
+# 用例8：查询条件为预计用款时间为2022-5到2022-7
+-
+  interfaceName : 待核验主体查询条件为预计用款时间为2022-5到2022-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportToCheckOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (1)
+    orderPrepariedTimeEnd: 202205
+    orderPrepariedTimeStart: 202207
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+
+
+
+# 未通过主体
+# 用例1：无查询条件
+-
+  interfaceName : 未通过主体无查询条件
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getNoPassOrderList
+  url_export : /hkm-service/hkm/export/exportNoPassOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例2：查询条件为阜阳市
+-
+  interfaceName : 未通过主体查询条件为阜阳市
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例3：查询条件为阜阳市-阜南县
+-
+  interfaceName : 未通过主体查询条件为阜阳市-阜南县
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例4：查询条件为阜阳市-阜南县-方集镇
+-
+  interfaceName : 未通过主体查询条件为阜阳市-阜南县-方集镇
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ('341225101000')
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例5：查询条件为申请日期为2022-4-7到2022-4-7
+-
+  interfaceName : 未通过主体查询条件为申请日期为2022-4-7到2022-4-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: "2022-04-07"
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: "2022-04-07"
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例6：查询条件为申请日期为2022-4-7到2022-4-21
+-
+  interfaceName : 未通过主体查询条件为申请日期为2022-4-7到2022-4-21
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: "2022-04-21"
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: "2022-04-07"
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例7：查询条件为意向银行为中国建设银行
+-
+  interfaceName : 未通过主体查询条件为意向银行为中国建设银行
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: 105362050023
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例8：查询条件为预计用款时间为2022-5到2022-7
+-
+  interfaceName : 未通过主体查询条件为预计用款时间为2022-5到2022-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: "2022-07"
+    orderPrepariedTimeStart: "2022-05"
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例9：查询条件为项目类型为码上办
+-
+  interfaceName : 未通过主体查询条件为项目类型为码上办
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 1
+
+# 用例10：查询条件为未通过类型为业务员不通过
+-
+  interfaceName : 未通过主体查询条件为未通过类型为业务员不通过
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: businessman_no_pass
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例11：查询条件为姓名为李永根
+-
+  interfaceName : 未通过主体查询条件为姓名为李永根
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: 李永根
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例12：查询条件为身份证号为341127196503262830
+-
+  interfaceName : 未通过主体查询条件为身份证号为341127196503262830
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: 341127196503262830
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例13：查询条件为项目类型为信贷直通车
+-
+  interfaceName : 未通过主体查询条件为项目类型为信贷直通车
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 2
+
+# 用例14：查询条件为项目类型为银担e贷
+-
+  interfaceName : 未通过主体查询条件为项目类型为银担e贷
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 3
+
+# 用例15：查询条件为未通过类型为申请人年龄
+-
+  interfaceName : 未通过主体查询条件为未通过类型为申请人年龄
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: applicant_age
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例16：查询条件为未通过类型为黑名单客户
+-
+  interfaceName : 未通过主体查询条件为未通过类型为黑名单客户
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: black_list
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例17：查询条件为未通过类型为贷款信息重复
+-
+  interfaceName : 未通过主体查询条件为未通过类型为贷款信息重复
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: contract_duplicate
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例18：查询条件为未通过类型为贷款用途
+-
+  interfaceName : 未通过主体查询条件为未通过类型为贷款用途
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: loan_use
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例19：查询条件为未通过类型为不符合业务规定
+-
+  interfaceName : 未通过主体查询条件为未通过类型为不符合业务规定
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getNoPassOrderList
+  url_export: /hkm-service/hkm/export/exportNoPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    noPassType: non_compliance
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 有效需求主体
+# 用例1：无查询条件
+-
+  interfaceName : 有效需求主体无查询条件
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例2：查询条件为阜阳市
+-
+  interfaceName : 有效需求主体查询条件为阜阳市
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例3：查询条件为阜阳市-阜南县
+-
+  interfaceName : 有效需求主体查询条件为阜阳市-阜南县
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例4：查询条件为阜阳市-阜南县-方集镇
+-
+  interfaceName : 有效需求主体查询条件为阜阳市-阜南县-方集镇
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ('341225101000')
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例5：查询条件为申请日期为2022-4-7到2022-4-7
+-
+  interfaceName : 有效需求主体查询条件为申请日期为2022-4-7到2022-4-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: "2022-04-07"
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: "2022-04-07"
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例6：查询条件为申请日期为2022-4-7到2022-4-21
+-
+  interfaceName : 有效需求主体查询条件为申请日期为2022-4-7到2022-4-21
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: "2022-04-21"
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: "2022-04-07"
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例7：查询条件为意向银行为中国建设银行
+-
+  interfaceName : 有效需求主体查询条件为意向银行为中国建设银行
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: 105362050023
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例8：查询条件为预计用款时间为2022-5到2022-7
+-
+  interfaceName : 有效需求主体查询条件为预计用款时间为2022-5到2022-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: "2022-07"
+    orderPrepariedTimeStart: "2022-05"
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例9：查询条件为项目类型为码上办
+-
+  interfaceName : 有效需求主体查询条件为项目类型为码上办
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 1
+
+# 用例10：查询条件为处理方式为人工通过
+-
+  interfaceName : 有效需求主体查询条件为处理方式为人工通过
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: 3
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例11：查询条件为姓名为张霞
+-
+  interfaceName : 有效需求主体查询条件为姓名为张霞
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: 张霞
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例12：查询条件为身份证号为341226197802182754
+-
+  interfaceName : 有效需求主体查询条件为身份证号为341226197802182754
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custIdentityCard: 341226197802182754
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例13：查询条件为项目类型为信贷直通车
+-
+  interfaceName : 有效需求主体查询条件为项目类型为信贷直通车
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 2
+
+# 用例14：查询条件为项目类型为银担e贷
+-
+  interfaceName : 有效需求主体查询条件为项目类型为银担e贷
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 3
+
+# 用例15：查询条件为项目类型为政策外项目
+-
+  interfaceName : 有效需求主体查询条件为项目类型为政策外项目
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 4
+
+# 用例16：查询条件为处理方式为自动通过
+-
+  interfaceName : 有效需求主体查询条件为处理方式为自动通过
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custName: ""
+    dictItemCode: 4
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderIsblack: (3,4)
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 授信审批--待处理项目
+# 用例1：无查询条件
+-
+  interfaceName : 授信审批待处理项目无查询条件
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例2：查询条件为阜阳市
+-
+  interfaceName : 授信审批待处理项目查询条件为阜阳市
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": 341200000000
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例3：查询条件为阜阳市-阜南县
+-
+  interfaceName : 授信审批待处理项目查询条件为阜阳市-阜南县
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": 341200000000
+    "orderCountyCode": 341225000000
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例4：查询条件为阜阳市-阜南县-方集镇
+-
+  interfaceName : 授信审批待处理项目查询条件为阜阳市-阜南县-方集镇
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": 341200000000
+    "orderCountyCode": 341225000000
+    "orderTownCode": 341225101000
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例5：查询条件为申请日期为2022-11-1到2022-11-1
+-
+  interfaceName : 授信审批待处理项目查询条件为申请时间为2022-11-1到2022-11-1
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": "2022-11-01"
+    "orderCreateTimeEnd": "2022-11-01"
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例6：查询条件为申请日期为2022-11-1到2022-11-21
+-
+  interfaceName : 授信审批待处理项目查询条件为申请日期为2022-11-1到2022-11-21
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": "2022-11-01"
+    "orderCreateTimeEnd": "2022-11-21"
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例7：查询条件为意向银行为中国建设银行
+-
+  interfaceName : 授信审批待处理项目查询条件为意向银行为中国建设银行
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": 105362050023
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例8：查询条件为预计用款时间为2022-11到2022-12
+-
+  interfaceName : 授信审批待处理项目查询条件为预计用款时间为2022-11到2022-12
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": "2022-11"
+    "orderPrepariedTimeEnd": "2022-12"
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例9：查询条件为项目类型为码上办
+-
+  interfaceName : 授信审批待处理项目查询条件为项目类型为码上办
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": 1
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例10：查询条件为项目类型为信贷直通车
+-
+  interfaceName : 授信审批待处理项目查询条件为项目类型为信贷直通车
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": 2
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例11：查询条件为项目类型为银担e贷
+-
+  interfaceName : 授信审批待处理项目查询条件为项目类型为银担e贷
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": 3
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例12：查询条件为项目类型为政策外项目
+-
+  interfaceName : 授信审批待处理项目查询条件为项目类型为政策外项目
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": 4
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例13：查询条件为姓名包含刘
+-
+  interfaceName : 授信审批待处理项目查询条件为姓名包含刘
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": 刘
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 用例13：查询条件为身份证包含199字段
+-
+  interfaceName : 授信审批待处理项目查询条件为身份证包含199字段
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/todo/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/todo/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": 199
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+
+# 授信审批--审批中项目
+# 用例1：无查询条件
+-
+  interfaceName : 授信审批审批中项目无查询条件
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例2：查询条件为阜阳市
+-
+  interfaceName : 授信审批审批中项目查询条件为阜阳市
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": 341200000000
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例3：查询条件为阜阳市-阜南县
+-
+  interfaceName : 授信审批审批中项目查询条件为阜阳市-阜南县
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": 341200000000
+    "orderCountyCode": 341225000000
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例4：查询条件为阜阳市-阜南县-方集镇
+-
+  interfaceName : 授信审批审批中项目查询条件为阜阳市-阜南县-方集镇
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": 341200000000
+    "orderCountyCode": 341225000000
+    "orderTownCode": 341225101000
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例5：查询条件为申请日期为2022-11-1到2022-11-1
+-
+  interfaceName : 授信审批审批中项目查询条件为申请时间为2022-11-1到2022-11-1
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": "2022-11-1"
+    "orderCreateTimeEnd": "2022-11-1"
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例6：查询条件为申请日期为2022-11-1到2022-11-21
+-
+  interfaceName : 授信审批审批中项目查询条件为申请日期为2022-11-1到2022-11-21
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": "2022-11-1"
+    "orderCreateTimeEnd": "2022-11-21"
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例7：查询条件为意向银行为中国建设银行
+-
+  interfaceName : 授信审批审批中项目查询条件为意向银行为中国建设银行
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": 105362050023
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例8：查询条件为预计用款时间为2022-11到2022-12
+-
+  interfaceName : 授信审批审批中项目查询条件为预计用款时间为2022-11到2022-12
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": "2022-11"
+    "orderPrepariedTimeEnd": "2022-12"
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例9：查询条件为项目类型为码上办
+-
+  interfaceName : 授信审批审批中项目查询条件为项目类型为码上办
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": 1
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例10：查询条件为项目类型为信贷直通车
+-
+  interfaceName : 授信审批审批中项目查询条件为项目类型为信贷直通车
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": 2
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例11：查询条件为项目类型为银担e贷
+-
+  interfaceName : 授信审批审批中项目查询条件为项目类型为银担e贷
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": 3
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例12：查询条件为项目类型为政策外项目
+-
+  interfaceName : 授信审批审批中项目查询条件为项目类型为政策外项目
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": 4
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例13：查询条件为姓名包含刘
+-
+  interfaceName : 授信审批审批中项目查询条件为姓名包含刘
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": 刘
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例13：查询条件为身份证包含199字段
+-
+  interfaceName : 授信审批审批中项目查询条件为身份证包含199字段
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": 199
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+
+# 用例14：查询条件为是否授信为是
+-
+  interfaceName : 授信审批审批中项目查询条件为是否授信为是
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+    "creditFlag": 1
+
+# 用例15：查询条件为是否授信为否
+-
+  interfaceName : 授信审批审批中项目查询条件为是否授信为否
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": ""
+    "creditFlag": 0
+
+# 用例16：查询条件为审批状态为审批中
+-
+  interfaceName : 授信审批审批中项目查询条件为审批状态为审批中
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": 1
+    "creditFlag": ""
+
+# 用例17：查询条件为审批状态为已退回
+-
+  interfaceName : 授信审批审批中项目查询条件为审批状态为已退回
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": 2
+    "creditFlag": ""
+
+# 用例18：查询条件为审批状态为已撤回
+-
+  interfaceName : 授信审批审批中项目查询条件为审批状态为已撤回
+  amount_type : 申请
+  amount_data : amt
+  url_list : /hkm-service/hkm/order/credit/manage/approve/approving/list
+  url_export : /hkm-service/hkm/order/credit/manage/approve/approving/list/export
+  payload :
+    "custName": ""
+    "orderCityCode": ""
+    "orderCountyCode": ""
+    "orderTownCode": ""
+    "orderCounty": ""
+    "custIdentityCard": ""
+    "orderBank": ""
+    "orderCreateTimeStart": ""
+    "orderCreateTimeEnd": ""
+    "orderPrepariedTimeStart": ""
+    "orderPrepariedTimeEnd": ""
+    "sourceType": ""
+    "sortProp": orderCreateTime
+    "sortType": desc
+    "pageNum": 1
+    "pageSize": 10
+    "approveStatus": 5
+    "creditFlag": ""
+
+
+# 已发送项目
+# 用例1：无查询条件
+-
+  interfaceName : 已发送项目无查询条件
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例2：项目状态为担保已发送
+-
+  interfaceName : 已发送项目查询条件为项目状态为担保已发送
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: 8
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例3：缴费类型为分次缴纳
+-
+  interfaceName : 已发送项目查询条件为缴费类型为分次缴纳
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: 1
+    registerName: chiq
+    sourceType: ""
+
+# 用例4：项目类型为码上办
+-
+  interfaceName : 已发送项目查询条件为项目类型为码上办
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: 1
+
+# 用例5：银行类别为中国邮政储蓄
+-
+  interfaceName : 已发送项目查询条件为银行类别为中国邮政储蓄
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: 403
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例6：贷款银行为农村商业银行-安徽肥东农村商业银行
+-
+  interfaceName : 已发送项目查询条件为贷款银行为农村商业银行-安徽肥东农村商业银行
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: 402361014004
+    classCode: 402
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例7：担保文件为担保通知书
+-
+  interfaceName : 已发送项目查询条件为担保文件为担保通知书
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    guaranteeLetterType: 1
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例8：发送时间为2022-6-1到2022-6-8
+-
+  interfaceName : 已发送项目查询条件为发送时间为2022-6-1到2022-6-8
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    guaranteeLetterType: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+    endDate: "2022-06-08"
+    startDate: "2022-06-01"
+
+# 用例9：姓名为李法仁
+-
+  interfaceName : 已发送项目查询条件为姓名为李法仁
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    guaranteeLetterType: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: 李法仁
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+    endDate: ""
+    startDate: ""
+
+# 用例10：身份证为342423196708204978
+-
+  interfaceName : 已发送项目查询条件为身份证为342423196708204978
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    guaranteeLetterType: ""
+    loanApplicantIdcard: 342423196708204978
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+    endDate: ""
+    startDate: ""
+
+# 用例11：项目状态为银行已受理
+-
+  interfaceName : 已发送项目查询条件为项目状态为银行已受理
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: 9
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例12：项目状态为合同已签署
+-
+  interfaceName : 已发送项目查询条件为项目状态为合同已签署
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: 10
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例13：项目状态为银行已放款
+-
+  interfaceName : 已发送项目查询条件为项目状态为银行已放款
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: 14
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例14：项目状态为银行拒贷
+-
+  interfaceName : 已发送项目查询条件为项目状态为银行拒贷
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: 11
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例15：缴费类型为不限
+-
+  interfaceName : 已发送项目查询条件为缴费类型为不限
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: 0
+    registerName: chiq
+    sourceType: ""
+
+# 用例16：缴费类型为一次缴纳
+-
+  interfaceName : 已发送项目查询条件为缴费类型为一次缴纳
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: 2
+    registerName: chiq
+    sourceType: ""
+
+# 用例17：项目类型为信贷直通车
+-
+  interfaceName : 已发送项目查询条件为项目类型为信贷直通车
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: 2
+
+# 用例18：项目类型为银担e贷
+-
+  interfaceName : 已发送项目查询条件为项目类型为银担e贷
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: 3
+
+# 用例19：项目类型为政策外项目
+-
+  interfaceName : 已发送项目查询条件为项目类型为银担e贷
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: 4
+
+# 用例20：担保文件为担保意向函
+-
+  interfaceName : 已发送项目查询条件为担保文件为担保意向函
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    guaranteeLetterType: 0
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 用例21：担保文件为担保确认函
+-
+  interfaceName : 已发送项目查询条件为担保文件为担保确认函
+  amount_type : 担保
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryBankProgress
+  url_export : /hkm-service/hkm/export/exportGuaranteeSentProjectList
+  payload :
+    bankCode: ""
+    classCode: ""
+    guaranteeLetterType: 2
+    loanApplicantIdcard: ""
+    loanApplicantName: ""
+    orderStatus: ""
+    pageNum: 1
+    pageSize: 10
+    paymentTypeCode: ""
+    registerName: chiq
+    sourceType: ""
+
+# 未通过项目
+# 用例1：无查询条件
+-
+  interfaceName : 未通过项目无查询条件
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例2：阜阳市
+-
+  interfaceName : 未通过项目查询条件为阜阳市
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ('341200000000')
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例3：阜阳市-阜南县
+-
+  interfaceName : 未通过项目查询条件为阜阳市-阜南县
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例4：阜阳市-阜南县-方集镇
+-
+  interfaceName : 未通过项目查询条件为阜阳市-阜南县-方集镇
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ('341225101000')
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例5：贷款银行为中国建设银行
+-
+  interfaceName : 未通过项目查询条件为贷款银行为中国建设银行
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: 105362050023
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例6：项目类型为码上办
+-
+  interfaceName : 未通过项目查询条件为项目类型为码上办
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 1
+
+# 用例7：未通过类型为业务员不通过
+-
+  interfaceName : 未通过项目查询条件为未通过类型为业务员不通过
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: "1"
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例8：未通过类型为银行拒贷-暂时不需要贷款
+-
+  interfaceName : 未通过项目查询条件为未通过类型为银行拒贷-暂时不需要贷款
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: 暂时不需要贷款
+    failType: "2"
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例9：姓名为刘建军
+-
+  interfaceName : 未通过项目查询条件为姓名为刘建军
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: 刘建军
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例10：身份证为342122197709102676
+-
+  interfaceName : 未通过项目查询条件为身份证为342122197709102676
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: 342122197709102676
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例11：项目类型为信贷直通车
+-
+  interfaceName : 未通过项目查询条件为项目类型为信贷直通车
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 2
+
+# 用例12：项目类型为银担e贷
+-
+  interfaceName : 未通过项目查询条件为项目类型为银担e贷
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 3
+
+# 用例13：项目类型为政策外项目
+-
+  interfaceName : 未通过项目查询条件为项目类型为政策外项目
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: ""
+    failType: ""
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: 4
+
+# 用例14：未通过类型为银行拒贷-征信不良或涉诉
+-
+  interfaceName : 未通过项目查询条件为未通过类型为银行拒贷-征信不良或涉诉
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: 征信不良或涉诉
+    failType: "2"
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例15：未通过类型为银行拒贷-负债过高
+-
+  interfaceName : 未通过项目查询条件为未通过类型为银行拒贷-负债过高
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: 负债过高
+    failType: "2"
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例16：未通过类型为银行拒贷-我行存量客户
+-
+  interfaceName : 未通过项目查询条件为未通过类型为银行拒贷-我行存量客户
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: 我行存量客户
+    failType: "2"
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例17：未通过类型为银行拒贷-反担保措施无法落实
+-
+  interfaceName : 未通过项目查询条件为未通过类型为银行拒贷-反担保措施无法落实
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: 反担保措施无法落实
+    failType: "2"
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例18：未通过类型为银行拒贷-利率偏高无法接受
+-
+  interfaceName : 未通过项目查询条件为未通过类型为银行拒贷-利率偏高无法接受
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: 利率偏高无法接受
+    failType: "2"
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例19：未通过类型为银行拒贷-保函超期
+-
+  interfaceName : 未通过项目查询条件为未通过类型为银行拒贷-保函超期
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: 保函超期
+    failType: "2"
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""
+
+# 用例20：未通过类型为银行拒贷-其他原因
+-
+  interfaceName : 未通过项目查询条件为未通过类型为银行拒贷-其他原因
+  amount_type : 申请
+  amount_data : totalGuaranteeBatchAmount
+  url_list : /hkm-service/hkm/guarantee/queryProjectRejectedList
+  url_export : /hkm-service/hkm/export/exportGuaranteeRejectProjectList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    failReason: 其他原因
+    failType: "2"
+    loanAmountOrder: ""
+    loanBankCode: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: chiq
+    sourceType: ""

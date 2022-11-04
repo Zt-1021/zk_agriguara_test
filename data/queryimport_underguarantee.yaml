@@ -1,0 +1,776 @@
+# amount_type：申请/担保/贷款   对应计算金额的取值字段
+# amount_data:列表接口返回的总金额字段
+
+# 解保管理
+# 用例1：无查询条件
+-
+  interfaceName : 解保管理无查询条件
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例2：贷款主体为刘燕娟
+-
+  interfaceName : 解保管理查询条件为贷款主体为刘燕娟
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: 刘燕娟
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例3：贷款主体为阜阳四海花卉有限公司
+-
+  interfaceName : 解保管理查询条件为贷款主体为阜阳四海花卉有限公司
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: 阜阳四海花卉有限公司
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例4：证件号为342622196709105829
+-
+  interfaceName : 解保管理查询条件为贷款主体为阜阳四海花卉有限公司
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: 342622196709105829
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例5：证件号为342622196709105829
+-
+  interfaceName : 解保管理查询条件为贷款主体为阜阳四海花卉有限公司
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: 913415225970955660
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例6：借款合同编号为3915071120220085
+-
+  interfaceName : 解保管理查询条件为借款合同编号为3915071120220085
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: 3915071120220085
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例7：借据编号为ebb4e55436154d4f9ea6e0075c1loan697
+-
+  interfaceName : 解保管理查询条件为借据编号为ebb4e55436154d4f9ea6e0075c1loan697
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ebb4e55436154d4f9ea6e0075c1loan697
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例8：解保类型为正常解保
+-
+  interfaceName : 解保管理查询条件为解保类型为正常解保
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: 1
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例8：解保类型为代偿解保
+-
+  interfaceName : 解保管理查询条件为解保类型为代偿解保
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: 2
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例9：解保类型为化解解保
+-
+  interfaceName : 解保管理查询条件为解保类型为化解解保
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: 3
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例10：解保日期为2022-6-20到2022-6-20
+-
+  interfaceName : 解保管理查询条件为解保日期为2022-6-20到2022-6-20
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: "2022-06-20"
+    deinsuranceDateStart: "2022-06-20"
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例10：解保日期为2022-6-20到2022-6-30
+-
+  interfaceName : 解保管理查询条件为解保日期为2022-6-20到2022-6-30
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: "2022-06-30"
+    deinsuranceDateStart: "2022-06-20"
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例11：项目类型为码上办
+-
+  interfaceName : 解保管理查询条件为项目类型为码上办
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: 1
+
+# 用例12：项目类型为信贷直通车
+-
+  interfaceName : 解保管理查询条件为项目类型为信贷直通车
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: 2
+
+# 用例13：项目类型为银担e贷
+-
+  interfaceName : 解保管理查询条件为项目类型为银担e贷
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: 3
+
+# 用例14：项目类型为政策外项目
+-
+  interfaceName : 解保管理查询条件为项目类型为政策外项目
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: 4
+
+# 用例15：项目类型为其他
+-
+  interfaceName : 解保管理查询条件为项目类型为其他
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: 5
+
+# 用例16：数据获取为线上处理
+-
+  interfaceName : 解保管理查询条件为数据获取为线上处理
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+    onlineTypeCode: 1
+
+# 用例17：数据获取为线下导入
+-
+  interfaceName : 解保管理查询条件为数据获取为线下导入
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+    onlineTypeCode: "0"
+
+# 用例18：数据获取为老系统批量
+-
+  interfaceName : 解保管理查询条件为数据获取为老系统批量
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+    onlineTypeCode: 2
+
+# 用例19：数据获取为老系统信贷直通车
+-
+  interfaceName : 解保管理查询条件为数据获取为老系统信贷直通车
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+    onlineTypeCode: 3
+
+# 用例20：数据获取为老系统正常业务
+-
+  interfaceName : 解保管理查询条件为数据获取为老系统正常业务
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+    onlineTypeCode: 4
+
+# 用例21：处理人为段云松
+-
+  interfaceName : 解保管理查询条件为处理人为段云松
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceDateEnd: ""
+    deinsuranceDateStart: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+    onlineTypeCode: ""
+    loanSubmmitter: 段云松
+
+# 用例22：市为阜阳市
+-
+  interfaceName : 解保管理查询条件为市为阜阳市
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanSubmmitter: ""
+    onlineTypeCode: ""
+    orderCityCode: "341200000000"
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例22：市为阜阳市-阜南县
+-
+  interfaceName : 解保管理查询条件为市为阜阳市-阜南县
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanSubmmitter: ""
+    onlineTypeCode: ""
+    orderCityCode: "341200000000"
+    orderCounty: ""
+    orderCountyCode: "341225000000"
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例22：市为阜阳市-阜南县-方集镇
+-
+  interfaceName : 解保管理查询条件为市为阜阳市-阜南县-方集镇
+  amount_type : 贷款
+  amount_data : amount
+  url_list : /hkm-service/hkm/project/released/guarantee/all/list
+  url_export : /hkm-service/hkm/export/exportWarrantyReleasedProject
+  payload :
+    contractNo: ""
+    deinsuranceFlag: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    loanRctNo: ""
+    loanSubmmitter: ""
+    onlineTypeCode: ""
+    orderCityCode: "341200000000"
+    orderCounty: ""
+    orderCountyCode: "341225000000"
+    orderTownCode: "341225101000"
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+
+# 核销管理
+# 用例1：无查询条件
+-
+  interfaceName : 核销管理无查询条件
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+
+# 用例2：贷款主体为章永胜
+-
+  interfaceName : 核销管理查询条件为贷款主体为章永胜
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+    loanApplicantName: 章永胜
+
+# 用例3：贷款主体为芜湖市龙潭园景工程有限公司
+-
+  interfaceName : 核销管理查询条件为贷款主体为芜湖市龙潭园景工程有限公司
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+    loanApplicantName: 芜湖市龙潭园景工程有限公司
+
+# 用例4：证件号为342524197001200056
+-
+  interfaceName : 核销管理查询条件为证件号为342524197001200056
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+    loanApplicantName: ""
+    loanApplicantIdCard: 342524197001200056
+
+# 用例5：证件号为913402237529976320
+-
+  interfaceName : 核销管理查询条件为证件号为913402237529976320
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+    loanApplicantName: ""
+    loanApplicantIdCard: 913402237529976320
+
+# 用例6：项目类型为码上办
+-
+  interfaceName : 核销管理查询条件为项目类型为码上办
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+    loanApplicantName: ""
+    loanApplicantIdCard: ""
+    sourceType: 1
+
+# 用例7：项目类型为信贷直通车
+-
+  interfaceName : 核销管理查询条件为项目类型为信贷直通车
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+    loanApplicantName: ""
+    loanApplicantIdCard: ""
+    sourceType: 2
+
+# 用例8：项目类型为银担e贷
+-
+  interfaceName : 核销管理查询条件为项目类型为银担e贷
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+    loanApplicantName: ""
+    loanApplicantIdCard: ""
+    sourceType: 3
+
+# 用例9：项目类型为政策外项目
+-
+  interfaceName : 核销管理查询条件为项目类型为政策外项目
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+    loanApplicantName: ""
+    loanApplicantIdCard: ""
+    sourceType: 4
+
+# 用例10：项目类型为其他
+-
+  interfaceName : 核销管理查询条件为项目类型为其他
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    writeOffEndTime: ""
+    writeOffStartTime: ""
+    loanApplicantName: ""
+    loanApplicantIdCard: ""
+    sourceType: 5
+
+# 用例11：核销时间为2022-7-7到2022-7-7
+-
+  interfaceName : 核销管理查询条件为核销时间为2022-7-7到2022-7-7
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    loanApplicantName: ""
+    loanApplicantIdCard: ""
+    sourceType: ""
+    writeOffEndTime: "2022-07-07"
+    writeOffStartTime: "2022-07-07"
+
+# 用例12：核销时间为2022-7-7到2022-7-30
+-
+  interfaceName : 核销管理查询条件为核销时间为2022-7-7到2022-7-30
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    loanApplicantName: ""
+    loanApplicantIdCard: ""
+    sourceType: ""
+    writeOffEndTime: "2022-07-30"
+    writeOffStartTime: "2022-07-07"
+
+# 用例13：市为六安市
+-
+  interfaceName : 核销管理查询条件为市为六安市
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    contractNo: ""
+    createPerson: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCityCode: "341500000000"
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例14：市为六安市-裕安区
+-
+  interfaceName : 核销管理查询条件为市为六安市-裕安区
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    contractNo: ""
+    createPerson: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCityCode: "341500000000"
+    orderCounty: ""
+    orderCountyCode: "341503000000"
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""
+
+# 用例15：市为六安市-裕安区-固镇镇
+-
+  interfaceName : 核销管理查询条件为市为六安市-裕安区-固镇镇
+  amount_type : 核销
+  amount_data : amount
+  url_list : /hkm-service/hkm/loan/compensationOff/list
+  url_export : /hkm-service/hkm/loan/compensationOff/list/export
+  payload :
+    contractNo: ""
+    createPerson: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCityCode: "341500000000"
+    orderCounty: ""
+    orderCountyCode: "341503000000"
+    orderTownCode: "341503108000"
+    pageNum: 1
+    pageSize: 10
+    sourceType: ""

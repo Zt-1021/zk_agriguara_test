@@ -1,0 +1,302 @@
+# 代偿追偿列表
+# 用例1：无查询条件
+-
+  interfaceName : 代偿追偿无查询条件
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+
+# 用例2:贷款主体为邹运辉
+-
+  interfaceName : 代偿追偿贷款主体为邹运辉
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: 邹运辉
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+
+# 用例3:贷款主体为安徽牧龙谷生态农业有限公司
+-
+  interfaceName : 代偿追偿贷款主体为安徽牧龙谷生态农业有限公司
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: 安徽牧龙谷生态农业有限公司
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+
+# 用例4:证件号为341024196304017117
+-
+  interfaceName : 代偿追偿证件号为341024196304017117
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: '341024196304017117'
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+
+# 用例5:证件号为913402237529976320
+-
+  interfaceName : 代偿追偿证件号为913402237529976320
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: 913402237529976320
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+
+# 用例6:借款合同编号6047681120210051
+-
+  interfaceName : 代偿追偿借款合同编号6047681120210051
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: 6047681120210051
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+
+# 用例7:项目状态为已结案
+-
+  interfaceName : 代偿追偿项目状态为已结案
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: 1
+    sourceType: ""
+
+# 用例8:项目状态为代偿中
+-
+  interfaceName : 代偿追偿项目状态为代偿中
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: "0"
+    sourceType: ""
+
+# 用例9:项目状态为已核销
+-
+  interfaceName : 代偿追偿项目状态为已核销
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: 2
+    sourceType: ""
+
+# 用例10:项目类型为码上办
+-
+  interfaceName : 代偿追偿项目类型为码上办
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: 1
+
+# 用例11:项目类型为信贷直通车
+-
+  interfaceName : 代偿追偿项目类型为信贷直通车
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: 2
+
+# 用例12:项目类型为银担e贷
+-
+  interfaceName : 代偿追偿项目类型为银担e贷
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: 3
+
+# 用例13:项目类型为政策外项目
+-
+  interfaceName : 代偿追偿项目类型为政策外项目
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: 4
+
+# 用例14:项目类型为其他
+-
+  interfaceName : 代偿追偿项目类型为其他
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: 5
+
+# 用例15:代偿时间2022-5-31到2022-5-31
+-
+  interfaceName : 代偿追偿代偿时间2022-5-31到2022-5-31
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+    compensationBgnTime: "2022-05-31"
+    compensationEndTime: "2022-05-31"
+
+# 用例16:代偿时间2022-4-1到2022-5-31
+-
+  interfaceName : 代偿追偿代偿时间2022-4-1到2022-5-31
+  url_list : /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export : /hkm-service/hkm/export/exportSubrogationRecovery
+  payload :
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCounty: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+    compensationBgnTime: "2022-04-01"
+    compensationEndTime: "2022-05-31"
+
+
+# 用例17：查询条件为阜阳市('341200000000')
+-
+  interfaceName: 代偿追偿查询条件为阜阳市
+  url_list: /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export: /hkm-service/hkm/export/exportSubrogationRecovery
+  payload:
+    compensationHandler: ""
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCityCode: "341200000000"
+    orderCounty: ""
+    orderCountyCode: ""
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+
+# 用例18：查询条件为阜阳市-阜南县
+-
+  interfaceName: 代偿追偿查询条件为阜阳市-阜南县
+  url_list: /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export: /hkm-service/hkm/export/exportSubrogationRecovery
+  payload:
+    compensationHandler: ""
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCityCode: "341200000000"
+    orderCounty: ""
+    orderCountyCode: "341225000000"
+    orderTownCode: ""
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""
+
+# 用例19：查询条件为阜阳市-阜南县-方集镇
+-
+  interfaceName: 代偿追偿查询条件为阜阳市-阜南县-方集镇
+  url_list: /hkm-service/hkm/loan/compensation/queryCompensationList
+  url_export: /hkm-service/hkm/export/exportSubrogationRecovery
+  payload:
+    compensationHandler: ""
+    contractNo: ""
+    loanApplicantIdCard: ""
+    loanApplicantName: ""
+    orderCityCode: "341200000000"
+    orderCounty: ""
+    orderCountyCode: "341225000000"
+    orderTownCode: "341225101000"
+    pageNum: 1
+    pageSize: 10
+    projectStatus: ""
+    sourceType: ""

@@ -1,0 +1,605 @@
+# amount_type：申请/担保/贷款   对应计算金额的取值字段
+# amount_data:列表接口返回的总金额字段
+
+# 码上办
+# 用例1：无查询条件
+-
+  interfaceName : 码上办无查询条件
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (1)
+
+# 用例2：查询条件为阜阳市
+-
+  interfaceName : 码上办查询条件为阜阳市
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (1)
+
+# 用例3：查询条件为阜阳市-阜南县
+-
+  interfaceName : 码上办查询条件为阜阳市-阜南县
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (1)
+
+# 用例4：查询条件为阜阳市-阜南县-方集镇
+-
+  interfaceName : 码上办查询条件为阜阳市-阜南县-方集镇
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ('341225101000')
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (1)
+
+# 用例5：查询条件为申请日期为2022-4-7到2022-4-7
+-
+  interfaceName : 码上办查询条件为申请日期为2022-4-7到2022-4-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: 2022-04-07
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: 2022-04-07
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (1)
+
+# 用例6：查询条件为申请日期为2022-4-7到2022-4-21
+-
+  interfaceName : 码上办查询条件为申请日期为2022-4-7到2022-4-21
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: 2022-04-07
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: 2022-04-21
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (1)
+
+# 用例7：查询条件为意向银行为中国建设银行
+-
+  interfaceName : 码上办查询条件为意向银行为中国建设银行
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: 105362050023
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (1)
+
+# 用例8：查询条件为预计用款时间为2022-5到2022-7
+-
+  interfaceName : 码上办查询条件为预计用款时间为2022-5到2022-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: 2022-07
+    orderPrepariedTimeStart: 2022-05
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (1)
+
+# 银行推送
+# 用例1：无查询条件
+-
+  interfaceName : 银行推送无查询条件
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (3)
+
+# 用例2：查询条件为阜阳市
+-
+  interfaceName : 银行推送查询条件为阜阳市
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (3)
+
+# 用例3：查询条件为阜阳市-阜南县
+-
+  interfaceName : 银行推送查询条件为阜阳市-阜南县
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (3)
+
+# 用例4：查询条件为阜阳市-阜南县-方集镇
+-
+  interfaceName : 银行推送查询条件为阜阳市-阜南县-方集镇
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ('341225101000')
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (3)
+
+# 用例5：查询条件为申请日期为2022-4-7到2022-4-7
+-
+  interfaceName : 银行推送查询条件为申请日期为2022-4-7到2022-4-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: 2022-04-07
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: 2022-04-07
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (3)
+
+# 用例6：查询条件为申请日期为2022-4-7到2022-4-21
+-
+  interfaceName : 银行推送查询条件为申请日期为2022-4-7到2022-4-21
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: 2022-04-07
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: 2022-04-21
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (3)
+
+# 用例7：查询条件为意向银行为中国建设银行
+-
+  interfaceName : 银行推送查询条件为意向银行为中国建设银行
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: 105362050023
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (3)
+
+# 用例8：查询条件为预计用款时间为2022-5到2022-7
+-
+  interfaceName : 银行推送查询条件为预计用款时间为2022-5到2022-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: 2022-07
+    orderPrepariedTimeStart: 2022-05
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (3)
+
+# 银行推送
+# 用例1：无查询条件
+-
+  interfaceName : 其他来源无查询条件
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list : /hkm-service/hkm/getPassOrderList
+  url_export : /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (2,4)
+
+# 用例2：查询条件为阜阳市
+-
+  interfaceName : 其他来源查询条件为阜阳市
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload :
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (2,4)
+
+# 用例3：查询条件为阜阳市-阜南县
+-
+  interfaceName : 其他来源查询条件为阜阳市-阜南县
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (2,4)
+
+# 用例4：查询条件为阜阳市-阜南县-方集镇
+-
+  interfaceName : 其他来源查询条件为阜阳市-阜南县-方集镇
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ('341200000000')
+    orderCounty: ('341225000000')
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ('341225101000')
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (2,4)
+
+# 用例5：查询条件为申请日期为2022-4-7到2022-4-7
+-
+  interfaceName : 其他来源查询条件为申请日期为2022-4-7到2022-4-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: 2022-04-07
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: 2022-04-07
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (2,4)
+
+# 用例6：查询条件为申请日期为2022-4-7到2022-4-21
+-
+  interfaceName : 其他来源查询条件为申请日期为2022-4-7到2022-4-21
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: 2022-04-07
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: 2022-04-21
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (2,4)
+
+# 用例7：查询条件为意向银行为中国建设银行
+-
+  interfaceName : 其他来源查询条件为意向银行为中国建设银行
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: 105362050023
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: ""
+    orderPrepariedTimeStart: ""
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (2,4)
+
+# 用例8：查询条件为预计用款时间为2022-5到2022-7
+-
+  interfaceName : 其他来源查询条件为预计用款时间为2022-5到2022-7
+  amount_type : 申请
+  amount_data : totalOrderLoadAmount
+  url_list: /hkm-service/hkm/getPassOrderList
+  url_export: /hkm-service/hkm/export/exportPassOrderList
+  payload:
+    custIdentityCard: ""
+    custName: ""
+    loanAmountOrder: ""
+    orderBank: ""
+    orderCity: ""
+    orderCounty: ""
+    orderCreateTimeEnd: ""
+    orderCreateTimeOrder: desc
+    orderCreateTimeStart: ""
+    orderPrepariedTimeEnd: 2022-07
+    orderPrepariedTimeStart: 2022-05
+    orderTown: ""
+    pageNum: 1
+    pageSize: 10
+    registerName: 10100127295
+    sourceClass: (2,4)
